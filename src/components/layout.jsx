@@ -1,5 +1,6 @@
-import React, { Component, useState } from "react";
-import styled from "styled-components";
+import React, { Component, useState } from 'react';
+import styled from 'styled-components';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 const Layout = () => {
   const [display, setDisplay] = useState(false);
@@ -10,22 +11,22 @@ const Layout = () => {
       {/* ***********NAVBAR**************** */}
       <NavMainDiv>
         <NavSubDiv>
-          <div id="logo-div">Logo Name</div>
+          <div id='logo-div'>Logo Name</div>
           <CategoryDiv>
             <HeaderDiv>
-              <a id="header-link" href="">
+              <a id='header-link' href=''>
                 Category
               </a>
               <Button onClick={() => setDisplay(!display)}>
                 <img
-                  src="./assets/cateogry-arrow.png"
-                  alt=""
-                  height="13x"
-                  width="13px"
+                  src='./assets/cateogry-arrow.png'
+                  alt=''
+                  height='13x'
+                  width='13px'
                 />
               </Button>
             </HeaderDiv>
-            <div>
+            <div id='category-div'>
               <Categories hidden={display}>
                 <CategoryList>Perfume</CategoryList>
                 <CategoryList>Shoes</CategoryList>
@@ -33,20 +34,20 @@ const Layout = () => {
             </div>
           </CategoryDiv>
           <HeaderDiv>
-            <a id="header-link" href="">
+            <a id='header-link' href=''>
               What's new
             </a>
           </HeaderDiv>
-          <div id="summer-deals-div">
-            <a id="header-link" href="">
+          <div id='summer-deals-div'>
+            <a id='header-link' href=''>
               Summer Deals
             </a>
           </div>
         </NavSubDiv>
         <NavSubDiv>
-          <div id="search-div">
+          <div id='search-div'>
             <div>
-              <SearchField type="text" placeholder="Search here..." />
+              <SearchField type='text' placeholder='Search here...' />
             </div>
             <div>
               <SearchButton>Search</SearchButton>
@@ -55,22 +56,22 @@ const Layout = () => {
           <IconDiv>
             <Button>
               <img
-                id="icon"
-                src="./assets/account-icon.png"
-                alt=""
-                height="26px"
-                width="26px"
+                id='icon'
+                src='./assets/account-icon.png'
+                alt=''
+                height='26px'
+                width='26px'
               />
             </Button>
           </IconDiv>
           <IconDiv>
             <Button>
               <img
-                id="icon"
-                src="./assets/shopping-cart.png"
-                alt=""
-                height="28px"
-                width="28px"
+                id='icon'
+                src='./assets/shopping-cart.png'
+                alt=''
+                height='28px'
+                width='28px'
               />
             </Button>
           </IconDiv>
@@ -78,9 +79,19 @@ const Layout = () => {
       </NavMainDiv>
       {/* ***********NAVBAR**************** */}
       <div>
-        <div>
-          <Img src="./assets/perfume-img.jpg"></Img>
+        <div id='arrow-div'>
+          <ArrowDiv>
+            <div>
+              <img src='./assets/left-arrow.png' alt='' />
+            </div>
+            <div>
+              <img src='./assets/right-arrow.png' alt='' />
+            </div>
+          </ArrowDiv>
         </div>
+        <ImgDiv>
+          <Img src='/assets/perfume-img.jpg'></Img>
+        </ImgDiv>
       </div>
     </Main>
   );
@@ -122,10 +133,12 @@ const Button = styled.button`
 
 const Categories = styled.ul`
   position: absolute;
+  z-index: 9;
   list-style-type: none;
   padding: 0;
   border: 1px solid rgb(228, 228, 228);
   border-radius: 5px;
+  background-color: white;
 `;
 
 const CategoryList = styled.li`
@@ -169,8 +182,22 @@ const IconDiv = styled.div`
   margin-right: 20px;
 `;
 
-const Img = styled.div`
-  width: 200px;
-  height: 300px;git
-  object-fit: contain;
+const ImgDiv = styled.div`
+  text-align: center;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+  // <<<<<< To make the background of an image transparent >>>>>>>
+  mix-blend-mode: multiply;
+`;
+
+const ArrowDiv = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  top: 40%;
 `;

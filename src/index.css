@@ -30,4 +30,9 @@
     margin-top: 6px;
 }
 
+#arrow-div {
+    display: flex;
+    justify-content: center;
+}
+
   
