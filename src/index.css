@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* *******************NAVBAR******************** */
+#logo-div {
+    width: 150px;
+    padding: 10px;
+    text-align: center;
+}
+
+#header-link {
+    text-decoration: none;
+    color: black;
+}
+
+#summer-deals-div{
+    width: 100px;
+    padding: 10px;
+}
+
+#search-div {
+    display: flex;
+    width: 270px;
+    padding: 5px;
+}
+
+#icon{
+    margin-top: 6px;
+}
+
+  
