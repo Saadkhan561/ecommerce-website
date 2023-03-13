@@ -1,10 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
+import CarouselDiv from './carousel';
 
 const Layout = () => {
-  const [display, setDisplay] = useState(false);
-  console.log(display);
+  const [display, setDisplay] = useState(true);
+  const [navbar, setNavbar] = useState(false);
+  const [subNavbar, setSubNavbar] = useState(false);
 
   return (
     <Main>
@@ -12,6 +13,8 @@ const Layout = () => {
       <NavMainDiv>
         <NavSubDiv>
           <div id='logo-div'>Logo Name</div>
+        </NavSubDiv>
+        <div className='navbar-open'>
           <CategoryDiv>
             <HeaderDiv>
               <a id='header-link' href=''>
@@ -19,7 +22,7 @@ const Layout = () => {
               </a>
               <Button onClick={() => setDisplay(!display)}>
                 <img
-                  src='./assets/cateogry-arrow.png'
+                  src='./assets/category-arrow.png'
                   alt=''
                   height='13x'
                   width='13px'
@@ -43,8 +46,6 @@ const Layout = () => {
               Summer Deals
             </a>
           </div>
-        </NavSubDiv>
-        <NavSubDiv>
           <div id='search-div'>
             <div>
               <SearchField type='text' placeholder='Search here...' />
@@ -75,31 +76,61 @@ const Layout = () => {
               />
             </Button>
           </IconDiv>
-        </NavSubDiv>
-      </NavMainDiv>
-      {/* ***********NAVBAR**************** */}
-      <div>
-        <div id='arrow-div'>
-          <ArrowDiv>
-            <div>
-              <img src='./assets/left-arrow.png' alt='' />
-            </div>
-            <div>
-              <img src='./assets/right-arrow.png' alt='' />
-            </div>
-          </ArrowDiv>
         </div>
-        <ImgDiv>
-          <Img src='/assets/perfume-img.jpg'></Img>
-        </ImgDiv>
-      </div>
+        <div className='navbar-closed'>
+          <BarButton id='bar-button' onClick={() => setNavbar(!navbar)}>
+            <img src='./assets/options-bar.png' alt='' height={30} width={30} />
+          </BarButton>
+        </div>
+      </NavMainDiv>
+      <NavBarClosedUlDiv>
+        <NavBarClosedUl className='nav-closed-ul'>
+          <div className='nav-closed-li'>
+            <li>Cateogry</li>
+            <button
+              id='nav-closed-button'
+              onClick={() => setSubNavbar(!subNavbar)}
+            >
+              <img
+                id='nav-closed-image'
+                src='/assets/category-arrow.png'
+                alt=''
+                height='13x'
+                width='13px'
+              />
+            </button>
+          </div>
+          <div
+            className={
+              subNavbar ? 'category-list-nav-open' : 'category-list-nav-closed'
+            }
+          >
+            <ul>
+              <NavBarClosedLi>Perfume</NavBarClosedLi>
+              <NavBarClosedLi>Shoes</NavBarClosedLi>
+            </ul>
+          </div>
+          <div className={subNavbar ? 'sub-navbar-open' : 'sub-navbar-closed'}>
+            <NavBarClosedLi>What's new</NavBarClosedLi>
+            <NavBarClosedLi>Summer Deals</NavBarClosedLi>
+            <NavBarClosedLi>Profile</NavBarClosedLi>
+            <NavBarClosedLi>My Cart</NavBarClosedLi>
+          </div>
+        </NavBarClosedUl>
+      </NavBarClosedUlDiv>
+      {/* ***********NAVBAR**************** */}
+      <CarouselDiv navbar={navbar} subNavbar={subNavbar} />
     </Main>
   );
 };
 
 export default Layout;
 
-const Main = styled.div``;
+const Main = styled.div`
+  width: 100%;
+`;
+
+// ******************NAVBAR*******************
 
 const NavMainDiv = styled.div`
   display: flex;
@@ -121,7 +152,7 @@ const CategoryDiv = styled.div`
 const HeaderDiv = styled.div`
   display: flex;
   padding: 10px;
-  width: 80px;
+  width: 90px;
 `;
 const Button = styled.button`
   border: none;
@@ -182,22 +213,30 @@ const IconDiv = styled.div`
   margin-right: 20px;
 `;
 
-const ImgDiv = styled.div`
-  text-align: center;
+const BarButton = styled.button`
+  cursor: pointer;
+  border: white;
 `;
 
-const Img = styled.img`
-  width: 100%;
-  height: 80vh;
-  object-fit: cover;
-  // <<<<<< To make the background of an image transparent >>>>>>>
-  mix-blend-mode: multiply;
-`;
-
-const ArrowDiv = styled.div`
+const NavBarClosedUlDiv = styled.div`
   position: absolute;
-  display: flex;
-  justify-content: space-between;
-  width: 95%;
-  top: 40%;
+  width: 100%;
 `;
+
+const NavBarClosedUl = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const NavBarClosedLi = styled.li`
+  padding: 10px 45px;
+  cursor: pointer;
+  :hover {
+    background-color: rgb(176, 176, 176);
+    cursor: pointer;
+    transition-duration: 0.5s;
+  }
+`;
+
+// ******************NAVBAR*******************
